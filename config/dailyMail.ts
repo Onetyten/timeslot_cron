@@ -17,9 +17,9 @@ export async function dailyCron() {
     if (!emailService || !emailUser || ! emailPass){
         throw new Error("Email credentials not found in the .env file")
     }
-    nodeCron.schedule('* * * * *',async ()=>{
+    nodeCron.schedule('* * * * * *',async ()=>{
     // nodeCron.schedule('0 7 * * *',async ()=>{
-        console.log("Running daily cron at", new Date().toLocaleDateString('en-us',{day:'2-digit',month:'short',year:'numeric'}))
+        console.log("Running daily cron at", new Date().toLocaleDateString('en-us',{day:'2-digit',month:'short',year:'numeric',hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false}))
         await mongoConnect()
         const today = new Date()
         today.setHours(0,0,0,0)
