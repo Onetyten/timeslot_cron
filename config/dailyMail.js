@@ -29,8 +29,8 @@ function dailyCron() {
         if (!emailService || !emailUser || !emailPass) {
             throw new Error("Email credentials not found in the .env file");
         }
-        node_cron_1.default.schedule('* * * * *', () => __awaiter(this, void 0, void 0, function* () {
-            // nodeCron.schedule('0 7 * * *',async ()=>{
+        // nodeCron.schedule('* * * * *',async ()=>{
+        node_cron_1.default.schedule('0 */6 * * *', () => __awaiter(this, void 0, void 0, function* () {
             console.log("Running daily cron at", new Date().toLocaleString("en-US", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false, }));
             yield (0, mongoConnect_1.default)();
             const today = new Date();
