@@ -7,8 +7,6 @@ import mongoConnect from "./mongoConnect";
 import userProfile from '../schema/user.schema';
 
 
-
-
 export async function dailyCron() {
     const emailService = process.env.EMAIL_SERVICE
     const emailUser = process.env.EMAIL_USER
@@ -17,8 +15,8 @@ export async function dailyCron() {
     if (!emailService || !emailUser || ! emailPass){
         throw new Error("Email credentials not found in the .env file")
     }
-    // nodeCron.schedule('* * * * *',async ()=>{
-    nodeCron.schedule('0 */6 * * *', async () => {
+    nodeCron.schedule('*/10 * * * * *',async ()=>{
+    // nodeCron.schedule('0 */6 * * *', async () => {
         console.log( "Running daily cron at",
         new Date().toLocaleString("en-US", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,}))
         await mongoConnect()
